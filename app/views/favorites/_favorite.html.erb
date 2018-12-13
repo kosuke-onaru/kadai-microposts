@@ -1,0 +1,12 @@
+
+  <% if micropost.gooding(current_user) %>
+    <%= form_for(micropost.favorites.find_by(micropost_id: micropost.id), html: { method: :delete }) do |f| %>
+      <%= hidden_field_tag :micropost_id, micropost.id %>
+      <%= f.submit 'goodout', class: 'btn btn-danger btn-xs' %>
+    <% end %>
+  <% else %>
+    <%= form_for(micropost.favorites.build) do |f| %>
+      <%= hidden_field_tag :micropost_id, micropost.id %>
+      <%= f.submit 'goodin', class: 'btn btn-primary btn-xs' %>
+    <% end %>
+  <% end %>
